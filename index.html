@@ -6,17 +6,17 @@
     <title>Quiz-Web</title>
     <link rel="stylesheet" href="style.css"> 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="function.js"></script>
+  
 </head>
 <body>
-  <div class="container">
+  <div class="container" >
     <div class="form-box">
         <h1>Sign in</h1>
-        <form action="">
+        <form action="" id="user_details">
          <div class="input-group">
             <div class="input-field">
                 <i class='bx bx-user'></i>
-                <input type="text" id="username" placeholder="UserName">
+                <input type="text" id="name" placeholder="UserName">
             </div>
             <div class="input-field">
                 <i class='bx bx-envelope' ></i>
@@ -29,12 +29,12 @@
             <p><a href="">Forget password</a></p> 
          </div> 
   <div class="btn-field">
-    <button type="button" onclick="detail();">Sign in</button>
+   <button type="" class="btn1" id="signin-button" onclick="detail()">Sign in</button>
   </div>
         </form>
     </div>
   </div> 
-   
+  <script src="script.js"></script>
 </body>
 
 </html>

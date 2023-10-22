@@ -1,5 +1,58 @@
+// function detail(){
+//    var username=document.getElementById("username").value;
+//    var email=document.getElementById("email").value;
+//    var pass=document.getElementById("pass").value;
 
+//   var user_name=localStorage.setItem("name",username);
+//   var e_mail=localStorage.setItem("email",email);
+//   var pasword=localStorage.setItem("pasword",pass);
 
+//   if(username.length==0 || email.length==0 || pass.length==0){
+//       alert("PLEASE FILL THE NECESSARY INFORMATION");
+//   }
+//   if(username.length!=0 && email.length!=0 && pass.length!=0){
+//    alert("YOUR INFORMATION HAS BEEN STORED SUCCESSFULLY");
+//   }
+//   const sign=document.querySelector('btn1'); 
+
+// }
+// document.getElementById('user_details').addEventListener('SignIn',detail);
+
+document.addEventListener('DOMContentLoaded', function () {
+   const nameInput = document.getElementById('name');
+   const emailInput = document.getElementById('email');
+   const passInput=document.getElementById('pass');
+   const signinButton = document.getElementById('signin-button');
+
+   signinButton.addEventListener('click', function () {
+       // Get user input values
+       const name = nameInput.value;
+       const email = emailInput.value;
+       const pass=passInput.value;
+       // Check if the fields are not empty
+       if (name && email && pass) {
+           // Save user details in local storage
+           const userDetails = {
+               name: name,
+               email: email,
+               pass:pass
+           };
+
+           // Convert to JSON and save in local storage
+           localStorage.setItem('userDetails', JSON.stringify(userDetails));
+
+           // Redirect to the instructions page
+           redirectToInstructions();
+         } else {
+             alert('Please fill in all fields.');
+         }
+     });
+ 
+     function redirectToInstructions() {
+      alert("Successfully Login");
+         window.location.href = 'instruction.html';
+     }
+ });
 const questions = [
    {
        question_id: '0',
