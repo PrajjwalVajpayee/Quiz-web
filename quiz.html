@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz_Website</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/stylesheets/style2.css">
 </head>
-
 <body>
-    <div class="container">
-        
-        <div id="quiz-section">
-            <div class="timer">Timer: <span id="countdown">30</span></div>
-            <h2 class="question" id="question">Quiz question</h2>
-            <hr>
-            <ul>
-                <li><input type="radio" name="answer" class="answer" id="a">
-                    <label for="a" class="option" id="option_1">Quiz option</label>
-                </li>
-                <li><input type="radio" name="answer" class="answer" id="b">
-                    <label for="b" class="option" id="option_2">Quiz option</label>
-                </li>
-                <li><input type="radio" name="answer" class="answer" id="c">
-                    <label for="c" class="option" id="option_3">Quiz option</label>
-                </li>
-                <li><input type="radio" name="answer" class="answer" id="d">
-                    <label for="d" class="option" id="option_4">Quiz option</label>
-                </li>
-            </ul>
-            <hr>
-            <div class="btn2">
-                <button type="submit" id="submit2">SUBMIT</button>
-                <button id="skip">SKIP</button>
-            </div>
-        </div>
-    </div>
-    <script src="function.js"></script>
-</body>
+    
+    <div class="quiz-container">
+        <h2 class="question">Test</h2>
 
+        <div class="options-container">
+            
+           
+
+        </div>
+
+        <button class="next-btn">Next</button>
+    </div>
+
+    <div class="quiz-start-container">
+        <button class="quiz-btn start-quiz-btn">Start Quiz</button>
+
+        <p class="info">There are 3 questions. Click on the correct option. The result will be displayed at the end of the quiz.</p>
+    </div>
+
+    <div class="quiz-result-container">
+        <button class="quiz-close-btn">+</button>
+        <img src="img/crown.png" alt="">
+        <h2 class="result-heading">Congratulations!</h2>
+
+        <p class="score-text">You have scored 3 out of 3</p>
+
+        <button class="quiz-btn retake-quiz-btn">Retake Quiz</button>
+    </div>
+
+    <div class="quiz-overlay"></div>
+
+
+
+    <script src="script.js"></script>
+</body>
 </html>
