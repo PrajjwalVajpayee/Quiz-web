@@ -1,58 +1,39 @@
-// function detail(){
-//    var username=document.getElementById("username").value;
-//    var email=document.getElementById("email").value;
-//    var pass=document.getElementById("pass").value;
-
-//   var user_name=localStorage.setItem("name",username);
-//   var e_mail=localStorage.setItem("email",email);
-//   var pasword=localStorage.setItem("pasword",pass);
-
-//   if(username.length==0 || email.length==0 || pass.length==0){
-//       alert("PLEASE FILL THE NECESSARY INFORMATION");
-//   }
-//   if(username.length!=0 && email.length!=0 && pass.length!=0){
-//    alert("YOUR INFORMATION HAS BEEN STORED SUCCESSFULLY");
-//   }
-//   const sign=document.querySelector('btn1'); 
-
-// }
-// document.getElementById('user_details').addEventListener('SignIn',detail);
-
 document.addEventListener('DOMContentLoaded', function () {
-   const nameInput = document.getElementById('name');
-   const emailInput = document.getElementById('email');
-   const passInput=document.getElementById('pass');
-   const signinButton = document.getElementById('signin-button');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const ageinput = document.getElementById('age');
+    const signinButton = document.getElementById('signin-button');
 
-   signinButton.addEventListener('click', function () {
-       // Get user input values
-       const name = nameInput.value;
-       const email = emailInput.value;
-       const pass=passInput.value;
-       // Check if the fields are not empty
-       if (name && email && pass) {
-           // Save user details in local storage
-           const userDetails = {
-               name: name,
-               email: email,
-               pass:pass
-           };
+    signinButton.addEventListener('click', function () {
+        // Get user input values
+        const name = nameInput.value;
+        const email = emailInput.value;
+        const  age= ageinput.value;
 
-           // Convert to JSON and save in local storage
-           localStorage.setItem('userDetails', JSON.stringify(userDetails));
+        // Check if the fields are not empty
+        if (name && email && age) {
+            // Save user details in local storage
+            const userDetails = {
+                name: name,
+                email: email,
+                age: age
+            };
 
-           // Redirect to the instructions page
-           redirectToInstructions();
-         } else {
-             alert('Please fill in all fields.');
-         }
-     });
- 
-     function redirectToInstructions() {
-      alert("Successfully Login");
-         window.location.href = 'instruction.html';
-     }
- });
+            // Convert to JSON and save in local storage
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+
+            // Redirect to the instructions page
+            redirectToInstructions();
+        } else {
+            alert('Please fill in all fields.');
+        }
+    });
+
+    function redirectToInstructions() {
+        
+        window.location.href = 'instruction.html';
+    }
+});
 const questions = [
    {
        question_id: '0',
@@ -74,10 +55,22 @@ const questions = [
            { option: 'Central Processing Unit' },
        ],
        correct_answer: 'Central Processing Unit'
+       
    },
 
    {
-       question_id: '2',
+    question_id: '2',
+    question: 'What is the full form of CSS?',
+    options: [
+        { option: 'Cascade style sheet' },
+        { option: 'Cascading Stylesheet' },
+        { option: 'cascading sheet' },
+    ],
+    correct_answer: 'Cascading Stylesheet'
+},
+
+   {
+       question_id: '3',
        question: 'CSS stands for Cascading Stylesheet',
        options: [
            { option: 'True' },
@@ -88,10 +81,10 @@ const questions = [
 ]
 
 
-
 const starQuizBtn = document.querySelector(".start-quiz-btn");
 const quizContainer = document.querySelector(".quiz-container");
 const nextBtn = document.querySelector(".next-btn");
+const skipBtn = document.querySelector(".skip-btn");
 const quizResultContainer = document.querySelector(".quiz-result-container");
 const quizOverlay = document.querySelector(".quiz-overlay");
 const quizCloseBtn = document.querySelector(".quiz-close-btn");
@@ -119,21 +112,96 @@ const init = () => {
 
 // Start Button
 
-starQuizBtn.addEventListener("click", () => {
+starQuizBtn.addEventListener('click', () => {
    init();
    quizContainer.classList.add("active");
    quizOverlay.classList.add("active");
    displayQuestions(questionNumber);
 })
 
+// skip Button
+function toggleSkipButtonVisibility() {
+    if (questionNumber === totalQuestion - 1) {
+        skipBtn.style.display = "none"; 
+    } else {
+       
+    }
+ }
+  //      timer
+  // Set the time limit to 15 seconds
+const timeLimit = 15;
+let countdown; // To store the timer interval
 
+function startTimer() {
+    const timerElement = document.getElementById("timer");
+    let timeLeft = timeLimit; // Start with the time limit
+    clearInterval(countdown);
+    countdown = setInterval(() => {
+        
+        if (timeLeft > 0) {
+            timerElement.innerText = timeLeft;
+            timeLeft--;
+        }
+        if (timeLeft === 0&&questionNumber<totalQuestion) {
+                 // Change the question when time is 0
+                 questionNumber++;
+                 displayQuestions(questionNumber);
+                 timeLeft = timeLimit;
+        }    
+        if (questionNumber === totalQuestion - 1) {
+            skipBtn.style.display="none";   
+           nextBtn.innerText = "Finish";
+           nextBtn.style.marginLeft="160px";
+          }
+        if ( timeLeft === 0  ) {
+                     // Show the result if it's the last question
+                     showResult();
+                     clearInterval(countdown);
+                 } 
+                //  else {
+                //      displayQuestions(questionNumber);
+                //       // Reset the timer for the next question
+                //     //  clearInterval(countdown);
+                //  }
+             
+        
+    }, 1000);
+}
+
+//        showQuestion
+
+
+// skip btn
+skipBtn.addEventListener("click", () => {
+    questionNumber++;
+    
+    if( userAnswer = ""){
+        
+    }
+    if (questionNumber == totalQuestion - 1) {
+        nextBtn.innerText = "Finish";
+        skipBtn.style.display="none";
+        nextBtn.style.marginLeft="160px";
+    
+    }
+    if (questionNumber < totalQuestion) {
+
+        displayQuestions(questionNumber);
+    } else {
+        quizResultContainer.classList.add("active");
+        showResult();
+        quizContainer.classList.remove("active");
+    }
+ })
 // Next Button
 
 nextBtn.addEventListener("click", () => {
    checkAnswer();
    questionNumber++;
    if (questionNumber == totalQuestion - 1) {
-       nextBtn.innerText = "Finish";
+     skipBtn.style.display="none";   
+    nextBtn.innerText = "Finish";
+    nextBtn.style.marginLeft="160px";
    }
    if (questionNumber < totalQuestion) {
        displayQuestions(questionNumber);
@@ -143,10 +211,7 @@ nextBtn.addEventListener("click", () => {
        quizContainer.classList.remove("active");
    }
 })
-
-
 // Close Button
-
 quizCloseBtn.addEventListener("click", () => {
    quizResultContainer.classList.remove("active");
    quizContainer.classList.remove("active");
@@ -155,12 +220,15 @@ quizCloseBtn.addEventListener("click", () => {
 
 
 // Retake Quiz Button
-
+function redirectToSignup() {
+      
+    window.location.href = 'index.html';
+ }
 retakeQuizBtn.addEventListener("click", () => {
    init();
    quizResultContainer.classList.remove("active");
    quizContainer.classList.add("active");
-   displayQuestions(questionNumber);
+   redirectToSignup();
 })
 
 
@@ -206,6 +274,7 @@ const displayQuestions = (qNo) => {
 
        optionsContainer.appendChild(optionRadioButton);
        optionsContainer.appendChild(optionLabel);
+       startTimer(15);
    })
 }
 
@@ -214,13 +283,13 @@ displayQuestions(questionNumber);
 
 // Show the result
 
-const showResult = () => {
+function showResult() {
    let percentage = (userScore/totalQuestion) * 100;
 
    if (percentage >= 60) {
-       resultHeading.innerText = "Congratulations!";
+       resultHeading.innerText = "Congratulations "+localStorage.getItem('username')+"!";
    } else {
-       resultHeading.innerText = "You can do better";
+       resultHeading.innerText = "You can do better "+localStorage.getItem('username');
    }
 
    scoreText.innerText = `You have scored ${userScore} out of ${totalQuestion}.`;
