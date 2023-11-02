@@ -26,8 +26,8 @@
      text-align: center;
      border-radius: 15px;
      background: #108dc7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #ef8e38, #108dc7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #ef8e38, #108dc7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: -webkit-linear-gradient(to bottom, #ef8e38, #108dc7);  
+background: linear-gradient(to bottom, #ef8e38, #108dc7); 
 
 }
 .form-box h1{
@@ -85,3 +85,16 @@ form p a{
     background-color: #999;
 }
 
+@media (max-width: 768px) {
+    .container {
+        background-size: contain; /* You can adjust this as needed */
+    }
+
+    .form-box {
+        max-width: 60%; /* Adjust the width as needed */
+    }
+
+    .input-field {
+        margin: 10px 0; /* Adjust margins as needed */
+    }
+}

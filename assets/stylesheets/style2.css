@@ -1,3 +1,7 @@
+body{
+    background-image: url(../images/instruction.jpg);
+}
+
 .quiz-container {
     background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(161,255,255,1) 11.3%, rgba(6,255,255,1) 41.2%, rgba(0,216,216,1) 77.8% );
     width: 480px;
@@ -45,7 +49,7 @@
 }
 
 .quiz-container .options-container input[type="radio"]:checked + label {
-    background: #d62828;
+    background: #28b6d6;
     color: #fff;
 }
 
@@ -60,6 +64,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: all 400ms;
+    
 }
 
 .quiz-container .option:hover {
@@ -67,9 +72,11 @@
     transform: scale(1.05);
 }
 
-.quiz-container .next-btn {
+
+.quiz-container .skip-btn {
     padding: 8px 48px;
     margin-top: 32px;
+    margin-left: 40px;
     margin-bottom: 20px;
     align-self: center;
     background: #000;
@@ -80,8 +87,26 @@
     cursor: pointer;
     border-radius: 10px;
     transition: all 400ms;
+    
 }
 
+.quiz-container .next-btn {
+    padding: 8px 48px;
+    margin-top: 32px;
+    margin-bottom: 20px;
+    margin-left: 115px;
+    background: #000;
+    border: 0;
+    color: #eee;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 400ms;
+}
+.quiz-container .skip-btn:hover {
+    transform: scale(1.05);
+}
 .quiz-container .next-btn:hover {
     transform: scale(1.05);
 }
@@ -89,14 +114,15 @@
 /* Start Quiz */
 
 .quiz-start-container {
-    width: 400px;
+    
+    width: 600px;
     margin: 36px auto;
     text-align: center;
     font-family: "Open Sans", sans-serif;
 }
 
 .quiz-btn {
-    background: #d62828;
+    background: #197bd1;
     border: 0;
     padding: 16px 0;
     width: 240px;
@@ -109,7 +135,11 @@
     margin: 8px 0;
     transition: all 400ms;
 }
+.info{
+font-size: 26px;
+font-weight: 600;
 
+}
 .quiz-btn:hover {
     transform: scale(1.15);
 }
@@ -183,4 +213,9 @@
 .quiz-overlay.active {
     opacity: 1;
     pointer-events: auto;
+}
+.question-timer{
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
 }
